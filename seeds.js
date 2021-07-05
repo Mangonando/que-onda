@@ -1,9 +1,4 @@
-const Movie = require("./models/DanceSchool");
-
-// mongoose.connect("mongodb://localhost/movies", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+const DanceSchool = require('./models/DanceSchool');
 
 const danceSchools = [
   {
