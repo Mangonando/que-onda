@@ -1,2 +1,30 @@
-<h1>{{title}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+<div
+  class="container d-flex justify-content-center align-items-center viewport-content"
+>
+  <div>
+    <form action="/artist-search" method="GET">
+      <div class="input-group">
+        <h1>{{title}} 🚀</h1>
+        <div class="m-5">
+          <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
+          <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a></div>
+        {{! <input type="search" class="form-control rounded" name="search" />
+        <button type="submit" class="btn btn-outline-dark">Search for an Artist</button> }}
+      </div>
+    </form>
+  </div>
+</div>
+<video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">
+  <source src="/videos/danceHero.mp4" type="video/mp4" />
+</video>
+<style>
+  video { object-fit: cover; width: 100vw; height: 100vh; position: fixed; top:
+  0; left: 0; } .viewport-content { position: relative; z-index: 1; height:
+  100%; }
+  .input-group {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      padding-top: 70px;
+      padding-left: 30px;
+  }
+</style>
