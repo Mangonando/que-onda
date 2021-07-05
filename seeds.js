@@ -1,4 +1,6 @@
-const Movie = require("./models/DanceSchool");
+const DanceSchool = require('./models/DanceSchool');
+
+ 
 
 // mongoose.connect("mongodb://localhost/movies", {
 //   useNewUrlParser: true,
@@ -52,3 +54,5 @@ const danceSchools = [
 
     },
 ]
+
+seed();
