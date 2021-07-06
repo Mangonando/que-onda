@@ -1,8 +1,19 @@
-{{!-- <h1>Our perfectly curated dance schools</h1>
-{{#each clients}}
-    <img src="{{this.image}}" alt="{{this.school}}">
-    <h2>{{this.school}}</h2>
-    <h4>{{this.danceStyle}}</h4>
-    <a href="/dance-school/{{ this._id }}">See Details</a>
-    <a href="/dance-school/{{ this._id }}/reserve">Reserve a lesson now</a>
-{{/each}} --}}
+<h1>Our perfectly curated dance classes</h1>
+<div>
+          <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
+          <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
+</div>
+{{#each classes}}
+  <div class="row">
+    <div class="col-2">
+      <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
+    </div>
+    <div class="col-8">
+      <h2>{{this.name}}</h2>
+      <h2>{{this.school}}</h2>
+      <a href="/dance-school/{{this._id}}">See Details</a>
+      <a href="/dance-school/{{this._id}}/reserve">Reserve a lesson now</a>
+    </div>
+
+  </div>
+{{/each}}

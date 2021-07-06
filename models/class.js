@@ -1,24 +1,28 @@
-const { Schema, model } = require("mongoose");
-
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
-const moongose = require("mongoose");
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 const classSchema = new Schema({
-  title: String,
-  studio: String,
-  type: String,
-  date: Date,
-  bezirk: String,
-  time: String,
-  teacher: String,
-  level: Number,
-  duration: Number,
-  booked: Boolean,
-  location: String, //for now
-  logo: String, //for now, image stuff
-})
+    name: String,
+    school: String,
+    danceStyle: String,
+    teacher: String,
+    days: String,
+    time: [{
+      "hour": Number,
+      "minute": Number}],
+    days: [{
+        "Monday": Boolean, 
+        "Tuesday": Boolean, 
+        "Wednesday": Boolean, 
+        "Thursday": Boolean, 
+        "Friday": Boolean, 
+        "Saturday": Boolean,
+        "Sunday": Boolean,
+      }],
+    price: Number,
+    id: String
+  });
 
 const Class = mongoose.model("Class", classSchema);
 

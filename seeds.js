@@ -1,14 +1,33 @@
-const DanceSchool = require('./models/DanceSchool');
 
-const danceSchools = [
+const mongoose = require('mongoose');
+const DanceSchool = require('./models/DanceSchool');
+const Classes = require('./models/class');
+
+mongoose.connect('mongodb://localhost/que-onda', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+
+const classes = [
   {
     school: "The House of Bachata",
     image: "/images/salsaSchool.jpg",
     danceStyles: "Bachata",
     teacher: "Romeo Santos",
     days: "Tuesdays",
-    time: "Night",
-    price: 10,
+    time: [{
+      "hour": 10,
+      "minute": 12}],
+    days: [{
+        "Monday": true, 
+        "Tuesday": true, 
+        "Wednesday": true, 
+        "Thursday": true, 
+        "Friday": true, 
+        "Saturday": true,
+        "Sunday": true,
+      }],
     id: "the-house-of-bachata",
   },
   {
@@ -17,7 +36,18 @@ const danceSchools = [
     danceStyles: "Salsa",
     teacher: "Celia Cruz",
     days: "Friday",
-    time: "Night",
+    time: [{
+      "hour": 10,
+      "minute": 00}],
+      days: [{
+        "Monday": true, 
+        "Tuesday": true, 
+        "Wednesday": true, 
+        "Thursday": true, 
+        "Friday": true, 
+        "Saturday": true,
+        "Sunday": true,
+      }],
     price: 10,
     id: "ihos"
   },
@@ -27,7 +57,19 @@ const danceSchools = [
     danceStyles: "Swing",
     teacher: "Ella Fitzgerald",
     days: "Monday ",
-    time: "Night",
+    time: [{
+      "hour": 9,
+      "minute": 50}],
+
+      days: [{
+        "Monday": true, 
+        "Tuesday": true, 
+        "Wednesday": true, 
+        "Thursday": true, 
+        "Friday": true, 
+        "Saturday": true,
+        "Sunday": true,
+      }],
     price: 15,
     id: "swing-n-out"
   },
@@ -37,7 +79,18 @@ const danceSchools = [
     danceStyles: "Contemporary",
     teacher: "Martha Graham",
     days: "Sunday",
-    time: "Afternoon",
+    time: [{
+      "hour": 11,
+      "minute": 00}],
+    days: [{
+        "Monday": true, 
+        "Tuesday": true, 
+        "Wednesday": true, 
+        "Thursday": true, 
+        "Friday": true, 
+        "Saturday": true,
+        "Sunday": true,
+      }],
     price: 10,
     id: "contemporary-queens"
   },
@@ -47,10 +100,28 @@ const danceSchools = [
     danceStyles: "Modern",
     teacher: "Alan Sanchez",
     days: "Saturday",
-    time: "Morning",
+    time: [{
+      "hour": 8,
+      "minute": 20}],
+      days: [{
+        "Monday": true, 
+        "Tuesday": true, 
+        "Wednesday": true, 
+        "Thursday": true, 
+        "Friday": true, 
+        "Saturday": true,
+        "Sunday": true,
+      }],
     price: 12,
     id: "modern-magic"
   },
 ];
 
-module.exports = danceSchools;
+Classes.insertMany(classes)
+  .then(classes => {
+    console.log(`${classes} have been added”`);
+    mongoose.connection.close();
+  })
+  .catch(err => console.log(err));
+
+module.exports = classes;

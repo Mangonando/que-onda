@@ -24,7 +24,7 @@ require("./config")(app);
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const mongoose = require('./db/index');
-const DB_URL = 'mongodb://localhost/passport';
+const DB_URL = 'mongodb://localhost/que-onda';
 
 
 app.use(
@@ -44,7 +44,6 @@ app.use(
 // passport configuration
 // http://www.passportjs.org/docs/configure/
 const User = require('./models/user_qonda');
-const classes = require('./models/DanceSchool')
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
