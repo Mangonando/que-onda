@@ -1,7 +1,6 @@
 const clientIndex = require("./main-view-classes");
-const Class = require("../models/class");
+const Training = require("../models/Training");
 const router = require("express").Router();
-const classes = require("../seeds");
 const {timesort} = require("../sort_time");
 const DanceSchool = require("../models/DanceSchool");
 
@@ -11,7 +10,7 @@ const DanceSchool = require("../models/DanceSchool");
 
 router.get('/', (req, res, next) => {
   //fix
-  res.render('school/index', {classes})
+  res.render('school/index', {seeds})
     // Class.find()
     // .then(classes => res.render('school/index', {classes}))
     // .catch(err => {
@@ -20,17 +19,20 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/schools', (req, res, next) => {
-    Class.find()
-    .then(classes => res.render('school/index', {classes}))
-    .catch(err => {
-      next(err);
-    });
+     Training.find()
+     .then(trainings => {
+       console.log(trainings);
+       res.render('school/index', {trainings});
+      })
+     .catch(err => {
+       next(err);
+     });
 })
 
 router.get("/signup", (req, res, next) => {
   res.render("signup")
 });
 
-router.get("/client", clientIndex)
+//router.get("/client", clientIndex)
 
 module.exports = router;

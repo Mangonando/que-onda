@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const danceSchools = require("../seeds");
-const Class = require("../models/DanceSchool");
-const {timesort} = require("../sort_time")
+//const router = require("express").Router();
+//const danceSchools = require("../seeds");
+//const Class = require("../models/DanceSchool");
+//const {timesort} = require("../sort_time")
 
 /* GET home page */
 //const clientIndex = (req, res, next) => {
@@ -41,4 +41,4 @@ const {timesort} = require("../sort_time")
 //   });
 // });
 
-module.exports = router;
+//module.exports = router;

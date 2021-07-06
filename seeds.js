@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 const DanceSchool = require('./models/DanceSchool');
-const Classes = require('./models/class');
+const Training = require('./models/Training');
 
 mongoose.connect('mongodb://localhost/que-onda', {
   useNewUrlParser: true,
@@ -117,11 +117,11 @@ const classes = [
   },
 ];
 
-Classes.insertMany(classes)
+Training.insertMany(classes)
   .then(classes => {
     console.log(`${classes} have been added”`);
     mongoose.connection.close();
   })
   .catch(err => console.log(err));
 
-module.exports = classes;
+//module.exports = classes;

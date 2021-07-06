@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
-const classSchema = new Schema({
+const trainingSchema = new Schema({
     name: String,
     school: String,
     danceStyle: String,
@@ -24,6 +23,6 @@ const classSchema = new Schema({
     id: String
   });
 
-const Class = mongoose.model("Class", classSchema);
+const Training = mongoose.model("Training", trainingSchema);
 
-module.exports = Class;
+module.exports = Training;
