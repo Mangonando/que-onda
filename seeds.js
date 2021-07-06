@@ -10,6 +10,8 @@ const danceSchools = [
     time: "Night",
     price: 10,
     id: "the-house-of-bachata",
+    username: "laneta",
+    password: "123",
   },
   {
     school: "The International House of Salsa (IHOS)",
@@ -19,7 +21,9 @@ const danceSchools = [
     days: "Friday",
     time: "Night",
     price: 10,
-    id: "ihos"
+    id: "ihos",
+    username: "nomames",
+    password: "123",
   },
   {
     school: "Swing -n- Out",
@@ -29,7 +33,9 @@ const danceSchools = [
     days: "Monday ",
     time: "Night",
     price: 15,
-    id: "swing-n-out"
+    id: "swing-n-out",
+    username: "queonda",
+    password: "123"
   },
   {
     school: "Contemporary Queens",
@@ -39,7 +45,9 @@ const danceSchools = [
     days: "Sunday",
     time: "Afternoon",
     price: 10,
-    id: "contemporary-queens"
+    id: "contemporary-queens",
+    username: "pinche",
+    password: "123"
   },
   {
     school: "Modern Magic",
@@ -49,7 +57,9 @@ const danceSchools = [
     days: "Saturday",
     time: "Morning",
     price: 12,
-    id: "modern-magic"
+    id: "modern-magic",
+    username: "pendejo",
+    password: "123"
   },
 ];
 

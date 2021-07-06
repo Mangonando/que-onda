@@ -32,7 +32,18 @@ router.get("/login", (req, res, next) => {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
-  passReqToCallback: true
+  passReqToCallback: true,
+}));
+
+router.get("/school/login", (req, res, next) => {
+  res.render("school/login");
+});
+
+router.post('/school/login', passport.authenticate('local', {
+  //successRedirect must take to /school/:id from MongoDB
+  successRedirect: '/school/',
+  failureRedirect: '/school/login',
+  passReqToCallback: true,
 }));
 
 

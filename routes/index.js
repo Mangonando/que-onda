@@ -1,4 +1,5 @@
 const clientIndex = require("./client");
+const { schoolIndex, schoolProfile } = require("./school");
 
 const router = require("express").Router();
 
@@ -8,9 +9,13 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/signup", (req, res, next) => {
-  res.render("signup")
-})
+  res.render("signup");
+});
 
-router.get("/client", clientIndex)
+router.get("/client", clientIndex);
+
+router.get("/school", schoolIndex);
+router.get("/school/:id", schoolIndex);
+router.get("/school/:id/edit", schoolProfile);
 
 module.exports = router;
