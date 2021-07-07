@@ -34,8 +34,6 @@ const classes = [
       opt: false}
       ],
     id: "the-house-of-bachata",
-    username: "laneta",
-    password: "123",
   },
   {
     name: "Salsa 2",
@@ -62,8 +60,6 @@ const classes = [
       ],
     price: 10,
     id: "ihos",
-    username: "nomames",
-    password: "123",
   },
   {
     name: "Swing III",
@@ -91,8 +87,6 @@ const classes = [
       ],
     price: 15,
     id: "swing-n-out",
-    username: "queonda",
-    password: "123"
   },
   {
     name: "Profi Contemporary",
@@ -119,8 +113,6 @@ const classes = [
       ],
     price: 10,
     id: "contemporary-queens",
-    username: "pinche",
-    password: "123"
   },
   {
     name: "Modern beginner",
@@ -147,8 +139,6 @@ const classes = [
       ],
     price: 12,
     id: "modern-magic",
-    username: "pendejo",
-    password: "123"
   },
 ];
 
