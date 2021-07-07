@@ -1,4 +1,4 @@
-<div
+{{!-- <div
   class="container d-flex justify-content-center align-items-center viewport-content"
 >
   <div>
@@ -27,4 +27,38 @@
       padding-top: 70px;
       padding-left: 30px;
   }
-</style>
+</style> --}}
+<h1>Our perfectly curated dance classes</h1>
+<div>
+          <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
+          <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
+</div>
+{{#each trainings}}
+  <div class="row">
+    <div class="col-2">
+      <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
+    </div>
+    <div class="col-8">
+<h1>Studio: {{school}}</h1>
+
+<h2>Dance style: {{danceStyle}}</h2>
+
+<h3>Instructor: {{teacher}}</h3>
+
+    <ul>
+        <li>Time: {{time.hour}}:{{time.minute}}</li>
+        <li>Price: {{price}}</li>
+        {{!-- <li>Classes available on: </li>
+        {{#each days}}
+          {{#if this}}
+            {{day}}
+        //{{/each}} --}}
+    </ul>
+
+	<a href="/book/signup/{{_id}}">Book your slot for class ✅</a>
+	<a href="/book/cancel/{{_id}}">Cancel your slot for class ❌</a>
+    </div>
+
+  </div>
+{{/each}}
+>>>>>>> master
