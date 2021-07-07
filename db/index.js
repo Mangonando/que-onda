@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/que-onda";
 
 mongoose
-  .connect(MONGO_URI, {
+  .connect("mongodb://localhost/que-onda", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
