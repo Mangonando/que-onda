@@ -3,16 +3,30 @@
           <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
           <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
 </div>
-{{#each classes}}
+{{#each trainings}}
   <div class="row">
     <div class="col-2">
       <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
     </div>
     <div class="col-8">
-      <h2>{{this.name}}</h2>
-      <h2>{{this.school}}</h2>
-      <a href="/dance-school/{{this._id}}">See Details</a>
-      <a href="/dance-school/{{this._id}}/reserve">Reserve a lesson now</a>
+<h1>Studio: {{school}}</h1>
+
+<h2>Dance style: {{danceStyle}}</h2>
+
+<h3>Instructor: {{teacher}}</h3>
+
+    <ul>
+        <li>Time: {{time.hour}}:{{time.minute}}</li>
+        <li>Price: {{price}}</li>
+        {{!-- <li>Classes available on: </li>
+        {{#each days}}
+          {{#if this}}
+            {{day}}
+        //{{/each}} --}}
+    </ul>
+
+	<a href="/book/signup/{{_id}}">Book your slot for class ✅</a>
+	<a href="/book/cancel/{{_id}}">Cancel your slot for class ❌</a>
     </div>
 
   </div>
