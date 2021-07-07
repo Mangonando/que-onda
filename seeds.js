@@ -59,7 +59,7 @@ const classes = [
       opt: false}
       ],
     price: 10,
-    id: "ihos"
+    id: "ihos",
   },
   {
     name: "Swing III",
@@ -86,7 +86,7 @@ const classes = [
       opt: false}
       ],
     price: 15,
-    id: "swing-n-out"
+    id: "swing-n-out",
   },
   {
     name: "Profi Contemporary",
@@ -112,7 +112,7 @@ const classes = [
       opt: false}
       ],
     price: 10,
-    id: "contemporary-queens"
+    id: "contemporary-queens",
   },
   {
     name: "Modern beginner",
@@ -138,7 +138,7 @@ const classes = [
       opt: false}
       ],
     price: 12,
-    id: "modern-magic"
+    id: "modern-magic",
   },
 ];
 
