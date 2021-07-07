@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const passport = require('passport');
-const User = require('../models/user_qonda');
+const User = require('../models/UserQonda');
 const bcrypt = require('bcrypt');
 
 // github login
