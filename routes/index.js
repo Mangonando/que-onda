@@ -1,4 +1,5 @@
-const clientIndex = require("./main-view-classes");
+const clientIndex = require("./client");
+const { schoolIndex, schoolProfile } = require("./school");
 const Training = require("../models/Training");
 const router = require("express").Router();
 const {timesort} = require("../sort_time");
@@ -16,7 +17,16 @@ router.get('/', (req, res, next) => {
      });
 })
 
-router.get("/signup", (req, res, next) => {
+
+router.get("/signup_school", (req, res, next) => {
+  res.render("signup");
+});
+
+//router.get("/client", clientIndex);
+
+router.get("/school", schoolIndex);
+router.get("/school/:id", schoolIndex);
+router.get("/school/:id/edit", schoolProfile);
   res.render("signup")
 });
 
