@@ -45,7 +45,7 @@ function schoolsort(classes){
     // compare hours first
     //console.log("Hi!!!!")
     //console.log(a.time.hour[0], "a . time [0]")
-
+    console.log(a.schoolId, "this is a school")
     if (a.school < b.school) return -1;
     if (a.school > b.school) return 1;
 

@@ -46,15 +46,14 @@ const classes = [
     level: 1,
     // schoolId: "the-house-of-bachata",
     danceStyle: "Bachata",
+    school: "The House of Bachata",
     teacher: "Romeo Santos",
     price: 10,
     time: {
-
-     days: {
         hour: 10,
         minute: 12,
       },
-    days: 
+    days: [
       {
         day: "Monday",
         opt: true,
@@ -72,6 +71,7 @@ const classes = [
     // school: "The International House of Salsa (IHOS)",
     danceStyle: "Salsa",
     teacher: "Celia Cruz",
+    school: "House of Salsa",
     time: 
       {
         hour: 10,
@@ -96,6 +96,7 @@ const classes = [
     level: 3,
     // school: "Swing -n- Out",
     danceStyle: "Swing",
+    school: "House of Swing",
     teacher: "Ella Fitzgerald",
     time: 
       {
@@ -122,6 +123,7 @@ const classes = [
     level: 4,
     // school: "Contemporary Queens",
     danceStyle: "Contemporary",
+    school: "House of Contemporary",
     teacher: "Martha Graham",
     time: 
       {
@@ -148,13 +150,13 @@ const classes = [
     // school: "Modern Magic",
     danceStyle: "Modern",
     teacher: "Alan Sanchez",
-
+    school: "House of Modern",
     time:
       {
         hour: 8,
         minute: 20,
       },
-    days: 
+    days: [
       {
         day: "Monday",
         opt: true,
@@ -168,7 +170,6 @@ const classes = [
     id: "modern-magic",
   },
 ];
-
 
 DanceSchool.insertMany(danceSchools)
   .then((danceSchools) => {
