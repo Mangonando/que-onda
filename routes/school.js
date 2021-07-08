@@ -1,4 +1,5 @@
 // const router = require("express").Router();
+//const danceSchools = require("../seeds");
 // const danceSchools = require("../seeds");
 const DanceSchool = require("../models/DanceSchool");
 const Training = require("../models/Training");

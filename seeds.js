@@ -49,10 +49,12 @@ const classes = [
     teacher: "Romeo Santos",
     price: 10,
     time: {
+
+     days: {
         hour: 10,
         minute: 12,
       },
-    days: [
+    days: 
       {
         day: "Monday",
         opt: true,
@@ -70,12 +72,12 @@ const classes = [
     // school: "The International House of Salsa (IHOS)",
     danceStyle: "Salsa",
     teacher: "Celia Cruz",
-    time: [
+    time: 
       {
         hour: 10,
         minute: 00,
       },
-    ],
+    
     days: [
       {
         day: "Monday",
@@ -95,12 +97,12 @@ const classes = [
     // school: "Swing -n- Out",
     danceStyle: "Swing",
     teacher: "Ella Fitzgerald",
-    time: [
+    time: 
       {
         hour: 9,
         minute: 50,
       },
-    ],
+    
 
     days: [
       {
@@ -121,12 +123,12 @@ const classes = [
     // school: "Contemporary Queens",
     danceStyle: "Contemporary",
     teacher: "Martha Graham",
-    time: [
+    time: 
       {
         hour: 11,
         minute: 00,
       },
-    ],
+    
     days: [
       {
         day: "Monday",
@@ -146,13 +148,13 @@ const classes = [
     // school: "Modern Magic",
     danceStyle: "Modern",
     teacher: "Alan Sanchez",
-    time: [
+
+    time:
       {
         hour: 8,
         minute: 20,
       },
-    ],
-    days: [
+    days: 
       {
         day: "Monday",
         opt: true,
@@ -167,7 +169,6 @@ const classes = [
   },
 ];
 
-// mongoose.connection
 
 DanceSchool.insertMany(danceSchools)
   .then((danceSchools) => {
@@ -185,4 +186,3 @@ DanceSchool.insertMany(danceSchools)
   })
   .catch((err) => console.log(err));
 
-//module.exports = classes;

@@ -74,7 +74,7 @@ router.post('/school/login', passport.authenticate('local', {
 // this is the route where the signup form get's posted to
 router.post('/signup', (req, res, next) => {
   // get username and password
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   console.log({ username, password });
   // is the password at least 8 chars
   if (password.length < 8) {
@@ -100,7 +100,7 @@ router.post('/signup', (req, res, next) => {
         const hash = bcrypt.hashSync(password, salt);
         console.log(hash);
         // create the user in the database
-        User.create({ username: username, password: hash })
+        User.create({ username: username, password: hash, email })
           .then(createdUser => {
             console.log(createdUser);
             // log the user in immediately

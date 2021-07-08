@@ -1,13 +1,12 @@
-{{!-- <div
-  class="container d-flex justify-content-center align-items-center viewport-content"
->
+{{!-- <div class="container d-flex justify-content-center align-items-center viewport-content">
   <div>
     <form action="/artist-search" method="GET">
       <div class="input-group">
         <h1>{{title}} 🚀</h1>
         <div class="m-5">
           <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
-          <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a></div>
+          <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
+        </div>
         {{! <input type="search" class="form-control rounded" name="search" />
         <button type="submit" class="btn btn-outline-dark">Search for an Artist</button> }}
       </div>
@@ -18,46 +17,86 @@
   <source src="/videos/danceHero.mp4" type="video/mp4" />
 </video>
 <style>
-  video { object-fit: cover; width: 100vw; height: 100vh; position: fixed; top:
-  0; left: 0; } .viewport-content { position: relative; z-index: 1; height:
-  100%; }
+  video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:
+      0;
+    left: 0;
+  }
+
+  .viewport-content {
+    position: relative;
+    z-index: 1;
+    height:
+      100%;
+  }
+
   .input-group {
-      background-color: rgba(0, 0, 0, 0.3);
-      color: #fff;
-      padding-top: 70px;
-      padding-left: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    padding-top: 70px;
+    padding-left: 30px;
   }
 </style> --}}
 <h1>Our perfectly curated dance classes</h1>
 <div>
-          <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
-          <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
+  <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
+  <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
 </div>
+<div>
+  <h2>Sort by:</h2>
+  <u>
+    <ul><a href="/">Time</a></ul>
+    <ul><a href="/sorted_name">Class title</a></ul>
+    <ul><a href="/sorted_school">School </a></ul>
+    <ul><a href="/sorted_style">Style </a></ul>
+  </u>
+</div>
+<div>
+  <h2>Filter by hours</h2>
+  <form action="/filtered_hours" method="POST"\>
+  <label for="hour">From:</label> 
+  <input id="hour" type="number" name="hour" value=19>
+  
+  <label for="end_hour">To:</label> 
+  <input id="end_hour" type="number" name="end_hour" value=21>
+
+  <button type="submit">Check now!</button>
+  </form> 
+
+</div>
+
+
 {{#each trainings}}
-  <div class="row">
-    <div class="col-2">
-      <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
-    </div>
-    <div class="col-8">
-<h1>Studio: {{school}}</h1>
+<div class="row">
+  <div class="col-2">
+    <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
+  </div>
+  <div class="col-8">
+    <h1>{{name}}</h1>
+    <h2>Studio: {{school}}</h1>
 
-<h2>Dance style: {{danceStyle}}</h2>
+    <h2>Dance style: {{danceStyle}}</h2>
 
-<h3>Instructor: {{teacher}}</h3>
+    <h3>Instructor: {{teacher}}</h3>
 
     <ul>
-        <li>Time: {{time.hour}}:{{time.minute}}</li>
-        <li>Price: {{price}}</li>
-        {{!-- <li>Classes available on: </li>
-        {{#each days}}
-          {{#if this}}
-            {{day}}
-        //{{/each}} --}}
+      <li>Time: {{time.hour}}:{{time.minute}}</li>
+      <li>Price: {{price}}</li>
+      {{!-- <li>Classes available on: </li>
+      {{#each days}}
+      {{#if this}}
+      {{day}}
+      //{{/each}} --}}
     </ul>
 
-	<a href="/book/signup/{{_id}}">Book your slot for class ✅</a>
-	<a href="/book/cancel/{{_id}}">Cancel your slot for class ❌</a>
-    </div>
-
+    <a href="/book/signup/{{_id}}">Book your slot for class ✅</a>
+    <a href="/book/cancel/{{_id}}">Cancel your slot for class ❌</a>
   </div>
+</div>
 {{/each}}
+
+<a href="/schoolSignUp"> Sign up as a School</a>
