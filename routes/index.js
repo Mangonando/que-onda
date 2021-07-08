@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
   console.log("home page");
      Training.find()
      .then(trainings => {
+       console.log(trainings);
        timesort(trainings);
        res.render('index', {trainings});
       })
@@ -20,7 +21,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/filtered_hours', (req, res, next) => {
   let {hour, end_hour} = req.body;
- 
   Training.find()
   .then(response => {
     let trainings = inBetweenTimes(response, hour, end_hour);
@@ -74,6 +74,8 @@ router.get('/sorted_style', (req, res, next) => {
     next(err);
   });
 })
+
+//user
 
 router.get('/signup')
 
