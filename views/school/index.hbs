@@ -1,6 +1,5 @@
-//<<<<<<< juan/schoolviews
-//{{#if school}}
-  {{#each school}}
+{{#if trainings}}
+  {{#each trainings}}
     <h1 class="title">{{this.school}}</h1>
     <div class="content row">
       <div class="col-2">
@@ -13,13 +12,13 @@
             <li class="list-group-item"><b>Time you are offering lessons:</b> {{this.time}}</li>
             <li class="list-group-item"><b>Price per lesson:</b> €{{this.price}}</li>
         </ul>
-        <a href="/school/{{this.id}}/edit" class="btn btn-outline-success">Edit your wonderful profile</a>
+        <a href="/school/{{this.id}}/edit" class="btn btn-outline-success">Edit your studio profile</a>
       </div>
 
     </div>
   {{/each}}
 {{else}}
-  <h3>Not found</h3>
+  <h3>There are no trainings listed</h3>
 {{/if}}
 
 <style>
