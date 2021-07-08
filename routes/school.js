@@ -1,5 +1,5 @@
 // const router = require("express").Router();
-const danceSchools = require("../seeds");
+//const danceSchools = require("../seeds");
 
 /* GET home page */
 const schoolIndex = (req, res, next) => {

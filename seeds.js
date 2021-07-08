@@ -17,9 +17,9 @@ const classes = [
     danceStyle: "Bachata",
     teacher: "Romeo Santos",
     price: 10,
-    time: [{
+    time: {
       "hour": 10,
-      "minute": 12}],
+      "minute": 12},
       days: [{
         day: "Monday",
         opt: true,
@@ -42,9 +42,9 @@ const classes = [
     image: "/images/salsaSchool.jpg",
     danceStyle: "Salsa",
     teacher: "Celia Cruz",
-    time: [{
+    time: {
       "hour": 10,
-      "minute": 00}],
+      "minute": 00},
       days: [{
         day: "Monday",
         opt: true,
@@ -95,9 +95,9 @@ const classes = [
     image: "/images/salsaSchool.jpg",
     danceStyle: "Contemporary",
     teacher: "Martha Graham",
-    time: [{
+    time: {
       "hour": 11,
-      "minute": 00}],
+      "minute": 00},
       days: [{
         day: "Monday",
         opt: true,
@@ -121,9 +121,9 @@ const classes = [
     image: "/images/salsaSchool.jpg",
     danceStyle: "Modern",
     teacher: "Alan Sanchez",
-    time: [{
+    time: {
       "hour": 8,
-      "minute": 20}],
+      "minute": 20},
       days: [{
         day: "Monday",
         opt: true,

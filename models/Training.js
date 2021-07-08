@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const school_list = require('./DanceSchool')
 
 const trainingSchema = new Schema({
     name: String,
     level: Number,
     image: String,
-    school: String,
     danceStyle: String,
     teacher: String,
-    time: [{
-      "hour": Number,
-      "minute": Number}],
+    school: String,
+    time: {
+      hour: Number,
+      minute: Number},
     days: [{
         day: String,
         opt: Boolean,
