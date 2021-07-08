@@ -5,17 +5,21 @@ const mongoose = require("mongoose");
 // ℹ️ Sets the MongoDB URI for our app to have access to it.
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/que-onda";
+const MONGO_URI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://juanramirez:Pz57gmbZgbXPL5Z@cluster0.74lzt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose
-  .connect("mongodb://localhost/que-onda", {
+  .connect("mongodb+srv://juanramirez:Pz57gmbZgbXPL5Z@cluster0.74lzt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
   })
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);

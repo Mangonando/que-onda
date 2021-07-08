@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const DanceSchool = require("./models/DanceSchool");
 const Training = require("./models/Training");
 
-mongoose.connect("mongodb://localhost/que-onda", {
+mongoose.connect("mongodb+srv://juanramirez:Pz57gmbZgbXPL5Z@cluster0.74lzt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -79,16 +79,12 @@ const classes = [
       },
     
     days: [
-      {
-        day: "Monday",
-        opt: true,
-      },
+      { day: "Monday", opt: true },
       { day: "Tuesday", opt: true },
       { day: "Wednesday", opt: true },
       { day: "Thursday", opt: false },
       { day: "Friday", opt: false },
     ],
-    price: 10,
     id: "ihos",
   },
   {
@@ -98,24 +94,19 @@ const classes = [
     danceStyle: "Swing",
     school: "House of Swing",
     teacher: "Ella Fitzgerald",
-    time: 
-      {
-        hour: 9,
-        minute: 50,
-      },
-    
+    price: 15,
+    time: {
+      hour: 9,
+      minute: 50,
+    },
 
     days: [
-      {
-        day: "Monday",
-        opt: true,
-      },
+      { day: "Monday", opt: true, },
       { day: "Tuesday", opt: true },
       { day: "Wednesday", opt: true },
       { day: "Thursday", opt: false },
       { day: "Friday", opt: false },
     ],
-    price: 15,
     id: "swing-n-out",
   },
   {
@@ -125,23 +116,19 @@ const classes = [
     danceStyle: "Contemporary",
     school: "House of Contemporary",
     teacher: "Martha Graham",
-    time: 
-      {
-        hour: 11,
-        minute: 00,
-      },
-    
+    price: 10,
+    time: {
+      hour: 11,
+      minute: 00,
+    },
+
     days: [
-      {
-        day: "Monday",
-        opt: true,
-      },
+      { day: "Monday", opt: true },
       { day: "Tuesday", opt: true },
       { day: "Wednesday", opt: true },
       { day: "Thursday", opt: false },
       { day: "Friday", opt: false },
     ],
-    price: 10,
     id: "contemporary-queens",
   },
   {
@@ -165,8 +152,7 @@ const classes = [
       { day: "Wednesday", opt: true },
       { day: "Thursday", opt: false },
       { day: "Friday", opt: false },
-    ],
-    price: 12,
+    ], 
     id: "modern-magic",
   },
 ];
@@ -175,9 +161,9 @@ DanceSchool.insertMany(danceSchools)
   .then((danceSchools) => {
     console.log(`${danceSchools} have been added”`);
 
-    classes.map(oneClass =>{
-        oneClass.schoolId = danceSchools[0]._id
-    })
+    classes.map((oneClass) => {
+      oneClass.schoolId = danceSchools[0]._id;
+    });
     Training.insertMany(classes)
       .then((classes) => {
         console.log(`${classes} have been added”`);
@@ -186,4 +172,3 @@ DanceSchool.insertMany(danceSchools)
       .catch((err) => console.log(err));
   })
   .catch((err) => console.log(err));
-

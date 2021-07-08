@@ -158,11 +158,11 @@ router.post('/user_filtered_hours', loginCheck(), (req, res, next) => {
 //User profile interactions
 
 router.get("/edit-profile", (req, res, next) => {
-  let dataFromUser = req.session.user;
-  console.log(dataFromUser)
-  User.findById(dataFromUser._id)
-       .then(userinfo => {
-         console.log(userinfo)
+  let userinfo = req.session.user;
+  //console.log(dataFromUser)
+  User.findById(userinfo._id)
+       .then(dataFromUser => {
+         //console.log(userinfo)
          res.render('student/edit-profile', {dataFromUser});
         })
        .catch(err => {
@@ -170,13 +170,16 @@ router.get("/edit-profile", (req, res, next) => {
        });
       });
 
-router.post("/edit-profile", (req, res, next) => {
+router.post("/edit-profile/", (req, res, next) => {
   const {name, email, password} = req.body;
-  console.log(req.params.id)
-  User.findByIdAndUpdate(req.session._id, {name, email, password})
+  console.log("")
+  console.log("this is req.body")
+  console.log(req.body)
+  console.log(req.session.user._id, "SHOULD BE RIGHT!")
+  User.findByIdAndUpdate(req.session.user._id, {name, email, password})
        .then(() => {
-         console.log("partyd")
-         res.redirect('indexLoggedin');
+         console.log("party", req.session.user)
+         res.redirect('logged');
         })
        .catch(err => {
          next(err);

@@ -132,13 +132,19 @@ router.get('/logout', (req, res, next) => {
 });
 
 router.get('/logged', (req, res, next) => {
-  let dataFromUser = req.session.user
+  let dbuser = req.session.user._id
+  //console.log(dataFromUser);
   Training.find()
      .then(trainings => {
        timesort(trainings)
-       console.log(trainings)
+       //console.log(trainings)
        //timesort(trainings);
-       res.render('indexLoggedin', {trainings, dataFromUser});
+       User.findById(dbuser).then(
+         dataFromUser => {
+            res.render('indexLoggedin', {trainings, dataFromUser});
+         }
+       )
+       
       })
      .catch(err => {
        next(err);

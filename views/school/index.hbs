@@ -14,7 +14,8 @@
         </ul>
         <a href="/school/{{this.id}}/edit" class="btn btn-outline-success">Edit your studio profile</a>
       </div>
-
+    {{/each}}
+{{/if}}
 {{#if school}}
   <h1 class="title">{{school.school}}</h1>
   <div class="content row">
@@ -55,10 +56,3 @@
   .title { background-color:salmon; position: absolute; left: 0; width: 100%;
   padding: 5px; padding-left: 5%; } .content { margin-top: 90px; }
 </style>
-
-{{! To display and later edit lessons  }}
-{{!-- <ul class="list-group mt-5 mb-5">
-            <li class="list-group-item"><b>Days you are offering lessons:</b> {{school.days}}</li>
-            <li class="list-group-item"><b>Time you are offering lessons:</b> {{school.time}}</li>
-            <li class="list-group-item"><b>Price per lesson:</b> €{{school.price}}</li>
-        </ul> --}}
