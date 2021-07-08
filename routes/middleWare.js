@@ -3,7 +3,7 @@ function timesort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
     if (a.time.hour < b.time.hour) return -1;
     if (a.time.hour > b.time.hour) return 1;
@@ -29,7 +29,7 @@ function namesort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
     if (a.name < b.name) return -1;
     if (a.name > b.name) return 1;
@@ -44,7 +44,7 @@ function schoolsort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
     if (a.school < b.school) return -1;
     if (a.school > b.school) return 1;
@@ -59,7 +59,7 @@ function dancestylesort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
     if (a.danceStyle < b.danceStyle) return -1;
     if (a.danceStyle > b.danceStyle) return 1;
