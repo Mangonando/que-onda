@@ -1,4 +1,4 @@
-const clientIndex = require("./client");
+// const clientIndex = require("./client");
 const { schoolIndex, schoolProfile } = require("./school");
 const Training = require("../models/Training");
 const router = require("express").Router();
@@ -22,13 +22,12 @@ router.get("/signup_school", (req, res, next) => {
   res.render("signup");
 });
 
-//router.get("/client", clientIndex);
+// router.get("/client", clientIndex);
 
 router.get("/school", schoolIndex);
 router.get("/school/:id", schoolIndex);
 router.get("/school/:id/edit", schoolProfile);
-  res.render("signup")
-});
+  // res.render("signup")
 
 //router.get("/client", clientIndex)
 
