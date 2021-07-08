@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const DanceSchool = require("./models/DanceSchool");
 const Training = require("./models/Training");
 
-mongoose.connect("mongodb://localhost/que-onda", {
+mongoose.connect("mongodb+srv://juanramirez:Pz57gmbZgbXPL5Z@cluster0.74lzt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

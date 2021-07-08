@@ -18,14 +18,13 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
-
 // session configuration
 
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const mongoose = require('./db/index');
-const DB_URL = 'mongodb://localhost/que-onda';
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const mongoose = require("./db/index");
+const DB_URL =
+  "mongodb+srv://juanramirez:Pz57gmbZgbXPL5Z@cluster0.74lzt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 app.use(
   session({
@@ -34,65 +33,65 @@ app.use(
     saveUninitialized: false,
     resave: true,
     store: MongoStore.create({
-      mongoUrl: DB_URL
-    })
+      mongoUrl: DB_URL,
+    }),
   })
-)
+);
 
 // end of session configuration
 
 // passport configuration
 // http://www.passportjs.org/docs/configure/
-const User = require('./models/UserQonda');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+const User = require("./models/UserQonda");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
 
-// passport wants to store as little data as possible in the session so it only uses 
-// the id's (or someting else if we would want to implement that) and not the whole 
+// passport wants to store as little data as possible in the session so it only uses
+// the id's (or someting else if we would want to implement that) and not the whole
 // user object
 // this method is used by passport to put the id of the user into the session
 passport.serializeUser((user, done) => {
   done(null, user._id);
-})
+});
 
 // this is used to retrieve the user by it's id (that is stored in the session)
 passport.deserializeUser((id, done) => {
   User.findById(id)
-    .then(dbUser => {
-      done(null, dbUser)
+    .then((dbUser) => {
+      done(null, dbUser);
     })
-    .catch(err => {
+    .catch((err) => {
       done(err);
-    })
-})
+    });
+});
 
 passport.use(
   new LocalStrategy((username, password, done) => {
     // this logic will be executed when we log in
     User.findOne({ username: username })
-      .then(userFromDB => {
+      .then((userFromDB) => {
         if (userFromDB === null) {
           // there is no user with this username
-          done(null, false, { message: 'Wrong Credentials' });
+          done(null, false, { message: "Wrong Credentials" });
         } else if (!bcrypt.compareSync(password, userFromDB.password)) {
           // the password does not match
-          done(null, false, { message: 'Wrong Credentials' });
+          done(null, false, { message: "Wrong Credentials" });
         } else {
           // everything correct - user should be logged in
           done(null, userFromDB);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         next(err);
-      })
+      });
   })
-)
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 passport.use(
   // these are the credentials that we added / received when we registered the app
   // on github
@@ -100,7 +99,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://127.0.0.1:3000/auth/google/callback'
+      callbackURL: "http://127.0.0.1:3000/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
@@ -108,31 +107,33 @@ passport.use(
       // authentication on github passed we need to check if we have the user
       // with that id now already in the database - if not we need to create it
       User.findOne({ googleId: profile.id })
-        .then(userFromDB => {
+        .then((userFromDB) => {
           if (userFromDB !== null) {
-            // pass the user to passport so it can be serialized and it's id put into 
+            // pass the user to passport so it can be serialized and it's id put into
             // the session
-            done(null, userFromDB)
+            done(null, userFromDB);
           } else {
             // we can log the profile that we receive from the github api
             // console.log(profile);
-            User.create({ googleId: profile.id, username: profile.username })
-              .then(userFromDB => {
-                done(null, userFromDB);
-              })
+            User.create({
+              googleId: profile.id,
+              username: profile.username,
+            }).then((userFromDB) => {
+              done(null, userFromDB);
+            });
           }
         })
-        .catch(err => {
+        .catch((err) => {
           done(err);
-        })
+        });
     }
-  ));
-
-
+  )
+);
 
 // default value for title local
 const projectName = "que-onda";
-const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
+const capitalized = (string) =>
+  string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
@@ -149,7 +150,6 @@ app.use("/", auth);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
-
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
