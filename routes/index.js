@@ -8,6 +8,7 @@ const DanceSchool = require("../models/DanceSchool");
 router.get('/', (req, res, next) => {
      Training.find()
      .then(trainings => {
+       console.log(trainings);
        timesort(trainings);
        //console.log("hi");
        //console.log(trainings);
@@ -22,7 +23,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/filtered_hours', (req, res, next) => {
   let {hour, end_hour} = req.body;
- 
   Training.find()
   .then(response => {
     let trainings = inBetweenTimes(response, hour, end_hour);
@@ -76,6 +76,8 @@ router.get('/sorted_style', (req, res, next) => {
     next(err);
   });
 })
+
+//user
 
 router.get('/signup')
 
