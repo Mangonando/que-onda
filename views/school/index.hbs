@@ -1,3 +1,20 @@
+{{#if trainings}}
+  {{#each trainings}}
+    <h1 class="title">{{this.school}}</h1>
+    <div class="content row">
+      <div class="col-2">
+        <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
+      </div>
+      <div class="col-8">
+        <h4>Dance Style: {{this.danceStyles}}</h4>
+       <ul class="list-group mt-5 mb-5">
+            <li class="list-group-item"><b>Days you are offering lessons:</b> {{this.days}}</li>
+            <li class="list-group-item"><b>Time you are offering lessons:</b> {{this.time}}</li>
+            <li class="list-group-item"><b>Price per lesson:</b> €{{this.price}}</li>
+        </ul>
+        <a href="/school/{{this.id}}/edit" class="btn btn-outline-success">Edit your studio profile</a>
+      </div>
+
 {{#if school}}
   <h1 class="title">{{school.school}}</h1>
   <div class="content row">
@@ -31,7 +48,7 @@
     </div>
   </div>
 {{else}}
-  <h3>Not found</h3>
+  <h3>There are no trainings listed</h3>
 {{/if}}
 
 <style>
