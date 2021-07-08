@@ -172,10 +172,6 @@ router.get("/edit-profile", (req, res, next) => {
 
 router.post("/edit-profile/", (req, res, next) => {
   const {name, email, password} = req.body;
-  console.log("")
-  console.log("this is req.body")
-  console.log(req.body)
-  console.log(req.session.user._id, "SHOULD BE RIGHT!")
   User.findByIdAndUpdate(req.session.user._id, {name, email, password})
        .then(() => {
          console.log("party", req.session.user)
@@ -186,30 +182,40 @@ router.post("/edit-profile/", (req, res, next) => {
        });
       });   
 
-
-// router.get('/logged', (req, res, next) => {
-//   let dataFromUser = req.session.user
-//   Training.find()
-//      .then(trainings => {
-//        timesort(trainings)
-//        console.log(trainings)
-//        //timesort(trainings);
-//        res.render('indexLoggedin', {trainings, dataFromUser});
-//       })
-//      .catch(err => {
-//        next(err);
-//      });
-// })
+     
 
 router.get("/my-trainings", (req, res, next) => {
   console.log("my trainings")
-  // console.log("user-id?", req.session.user);
-  res.render("student/my-trainings")
-  .catch(err => {
-    next(err);
+  User.findById(req.session.user._id).populate('classes')
+  .then(user => {    
+      console.log('user', user)
+      res.render("student/my-trainings", {userdetails: user}) 
+}).catch(err => {
+    console.log('Error while finding a project by ID during application: ', err);
   });
 });
 
+router.get("/add-class/:id", (req, res, next) => {
+  User.findByIdAndUpdate(req.session.user._id, 
+    {
+        "$push": { "classes": req.params.id },
+    }, 
+    {new: true}).then(user => {    
+      console.log('user', user)
+    res.redirect(`/my-trainings`);
+}).catch(err => {
+    console.log('Error while finding a project by ID during application: ', err);
+})  // classes.findByUserId(req.session.user._id)
+  // .then()
+  // //metodo agregar clase a usuario
+  // const {} = req.body;
+  // Training.find(req.session.user._id, {name, email, password})
+  //      .then(() => {
+  //        res.redirect('my-trainings');
+  //       })
+  //      .catch(err => {
+  //        next(err);
+       });
 
 
 

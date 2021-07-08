@@ -12,17 +12,24 @@
 {{/each}}
 
 <a href="/celebrities/new">Add new celebrity</a> --}}
+{{!-- {{#each bookedTraining}} --}}
 
+{{#with userdetails}}
 <h2>My student profile</h2>
+{{#each classes}}
 
-<div class="card">
+<p>{{name}}</p>
+{{!-- <div class="card">
   <h5 class="card-header">Booked Classes</h5>
   <div class="card-body">
     <h5 class="card-title">Class Name</h5>
     <p class="card-text">Class name, level, danceStyle, teacher, time, day, price.</p>
     <a href="#" class="btn btn-primary">Delete your booking</a>
-  </div>
-</div>
+  </div> --}}
+{{!-- </div> --}}
+{{/each}}
+{{/with}}
+{{!-- {{/each bookedTraining}} --}}
 
 {{!-- <div class="card text-center">
   <div class="card-header">

@@ -13,23 +13,27 @@ const trainingSchema = new Schema({
     danceStyle: String,
     teacher: String,
     time: {
-      hour: Number,
-      minute: Number},
+        hour: Number,
+        minute: Number},
     days: [{
         day: String,
         opt: Boolean,
        },
-        {day: String,
+      {
+        day: String,
         opt: Boolean},
-        {day: String,
+      {
+        day: String,
         opt: Boolean},
-      {day: String,
-      opt: Boolean},
-      {day: String,
-      opt: Boolean}
+      {
+        day: String,
+        opt: Boolean},
+      {
+        day: String,
+        opt: Boolean}
       ],
-    price: Number,
-    id: String
+        price: Number,
+        id: String
   });
 
 const Training = mongoose.model("Training", trainingSchema);
