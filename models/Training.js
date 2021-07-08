@@ -9,6 +9,9 @@ const trainingSchema = new Schema({
     danceStyle: String,
     teacher: String,
     school: String,
+    schoolId: Schema.Types.ObjectId,
+    danceStyle: String,
+    teacher: String,
     time: {
       hour: Number,
       minute: Number},

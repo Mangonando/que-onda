@@ -138,6 +138,7 @@ router.post('/login', (req, res, next) => {
       if (bcrypt.compareSync(password, dataFromUser.password)) {
         req.session.user = dataFromUser;
         res.redirect('/profile');
+        console.log("user?", req.session.user)
       } else {
         res.render('login', { message: 'Wrong credential' })
         return;
