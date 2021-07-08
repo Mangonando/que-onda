@@ -8,7 +8,9 @@ const danceSchoolSchema = new Schema({
   username: String,
   password: String,
   school: String,
-  classes: [Schema.Types.ObjectId],
+  danceStyles: [String],
+  image: String,
+  id: String
 });
 
 const DanceSchool = mongoose.model("DanceSchool", danceSchoolSchema);

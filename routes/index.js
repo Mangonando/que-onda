@@ -1,4 +1,3 @@
-// const clientIndex = require("./student");
 const { schoolIndex, schoolProfile } = require("./school");
 const Training = require("../models/Training");
 const router = require("express").Router();
@@ -23,7 +22,6 @@ router.get("/signup_school", (req, res, next) => {
 });
 
 
-
 router.get("/student/edit-profile", (req, res, next) => {
   res.render("student/edit-profile")
   .catch(err => {
@@ -41,7 +39,6 @@ router.get("/student/my-trainings", (req, res, next) => {
 
 
 
-//router.get("/client", clientIndex);
 
 // router.get('/:id/edit', (req, res, next) => {
 //   Movie.findById(req.params.id).populate('cast')
@@ -68,8 +65,7 @@ router.get("/student/my-trainings", (req, res, next) => {
 router.get("/school", schoolIndex);
 router.get("/school/:id", schoolIndex);
 router.get("/school/:id/edit", schoolProfile);
-//   res.render("signup")
-// });
+
 
 //router.get("/client", clientIndex)
 

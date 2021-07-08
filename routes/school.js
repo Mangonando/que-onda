@@ -1,39 +1,38 @@
 // const router = require("express").Router();
 // const danceSchools = require("../seeds");
+const DanceSchool = require("../models/DanceSchool");
+const Training = require("../models/Training");
 
 /* GET home page */
 const schoolIndex = (req, res, next) => {
-  const indexId = danceSchools.filter((item, index) => {
-    item._id = index;
-    return item.id === req.params["id"];
-  });
-  let index = null;
-  if (indexId.length > 0) {
-    index = indexId[0]._id;
-    res.render("school/index", {
-      school: [danceSchools[index]],
+  DanceSchool.findById(req.params["id"], (err, doc) => {
+    Training.find({ schoolId: doc._id }, (err, docs) => {
+      console.log("La linea 6", err);
+      if (err) {
+        res.render("school/index");
+      } else {
+        console.log("OEEEE", doc);
+        res.render("school/index", {
+          school: doc,
+          classes: docs,
+        });
+      }
     });
-  } else {
-    res.render("school/index");
-  }
+  });
 };
 
 const schoolProfile = (req, res, next) => {
-    const indexId = danceSchools.filter((item, index) => {
-      item._id = index;
-      return item.id === req.params["id"];
-    });
-    // console.log("OEEEEEEEEEEE", indexId);
-    let index = null;
-    if (indexId.length > 0) {
-      index = indexId[0]._id;
-      res.render("school/edit", {
-        school: [danceSchools[index]],
-      });
-    } else {
+  DanceSchool.findById(req.params["id"], (err, doc) => {
+    if (err) {
       res.render("school/edit");
+    } else {
+      console.log("OEEEE", doc);
+      res.render("school/edit", {
+        school: doc,
+      });
     }
-  };
+  });
+};
 
-  exports.schoolIndex = schoolIndex
-  exports.schoolProfile = schoolProfile
+exports.schoolIndex = schoolIndex;
+exports.schoolProfile = schoolProfile;

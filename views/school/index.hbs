@@ -15,23 +15,50 @@
         <a href="/school/{{this.id}}/edit" class="btn btn-outline-success">Edit your studio profile</a>
       </div>
 
+{{#if school}}
+  <h1 class="title">{{school.school}}</h1>
+  <div class="content row">
+    <div class="col-2">
+      <img width="100%" src="{{school.image}}" alt="{{school.school}}" />
     </div>
-  {{/each}}
+    <div class="col-8">
+      <h4 class="mb-5">Dance Style: {{school.danceStyles}}</h4>
+      <a href="/school/{{school.id}}/edit" class="btn btn-outline-success">Edit
+        your wonderful profile</a>
+    </div>
+    <hr class="mt-5 mb-5" />
+    <div class="row">
+      {{#each classes}}
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{this.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{this.level}}</h6>
+              <p class="card-text">{{this.danceStyle}}</p>
+              <p class="card-text">{{this.teacher}}</p>
+              {{!-- <p class="card-text">{{this.days}}</p> --}}
+              <p class="card-text">{{this.time.hour}}:{{this.time.minute}}</p>
+              <p class="card-text">{{this.price}}</p>
+              <a href="#" class="card-link">Edit</a>
+              <a href="#" class="card-link">Check It Out</a>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
 {{else}}
   <h3>There are no trainings listed</h3>
 {{/if}}
 
 <style>
-    .title {
-        background-color:salmon;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        padding: 5px;
-        padding-left: 5%;
-        
-    }
-    .content {
-        margin-top: 90px;
-    }
+  .title { background-color:salmon; position: absolute; left: 0; width: 100%;
+  padding: 5px; padding-left: 5%; } .content { margin-top: 90px; }
 </style>
+
+{{! To display and later edit lessons  }}
+{{!-- <ul class="list-group mt-5 mb-5">
+            <li class="list-group-item"><b>Days you are offering lessons:</b> {{school.days}}</li>
+            <li class="list-group-item"><b>Time you are offering lessons:</b> {{school.time}}</li>
+            <li class="list-group-item"><b>Price per lesson:</b> €{{school.price}}</li>
+        </ul> --}}

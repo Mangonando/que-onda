@@ -5,12 +5,12 @@ const trainingSchema = new Schema({
     name: String,
     level: Number,
     image: String,
-    school: String,
+    schoolId: Schema.Types.ObjectId,
     danceStyle: String,
     teacher: String,
-    time: [{
-      "hour": Number,
-      "minute": Number}],
+    time: {
+      hour: Number,
+      minute: Number},
     days: [{
         day: String,
         opt: Boolean,
