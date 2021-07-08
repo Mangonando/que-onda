@@ -1,8 +1,11 @@
 const { schoolIndex, schoolProfile } = require("./school");
 const Training = require("../models/Training");
 const router = require("express").Router();
-const {timesort, namesort, schoolsort, dancestylesort, inBetweenTimes} = require("./middleWare");
+const User = require("../models/UserQonda")
+const {timesort, namesort, schoolsort, dancestylesort, inBetweenTimes} = require("./functions");
 const DanceSchool = require("../models/DanceSchool");
+const { loginCheck } = require('./middlewares');
+
 
 router.get('/', (req, res, next) => {
   console.log("home page");
@@ -75,24 +78,131 @@ router.get('/sorted_style', (req, res, next) => {
   });
 })
 
+//login and sign up
+
+
+//router.get("/signup", (req, res, next) => {
+//  res.render("signup");
+//});
+
+
 //user
 
-router.get('/signup')
 
+router.get('/loggedHome', (req, res, next) => {
+  console.log("home page logged");
+  let loggedUser = req.session.user;
+  console.log(loggedUser)
+     Training.find()
+     .then(trainings => {
+       console.log(trainings);
+       timesort(trainings);
+       res.render('indexLoggedin', {trainings, loggedUser});
+      })
+     .catch(err => {
+       next(err);
+     });
+})
 
-router.get("/signup", (req, res, next) => {
-  res.render("signup");
-});
+router.get('/user_namesort', loginCheck(), (req, res, next) => {
+  console.log("home page logged");
+     Training.find()
+     .then(trainings => {
+       console.log(trainings);
+       namesort(trainings);
+       res.render('indexLoggedin', {trainings});
+      })
+     .catch(err => {
+       next(err);
+     });
+})
 
+router.get('/user_schoolsort', loginCheck(), (req, res, next) => {
+  console.log("home page logged");
+     Training.find()
+     .then(trainings => {
+       console.log(trainings);
+       schoolsort(trainings);
+       res.render('indexLoggedin', {trainings});
+      })
+     .catch(err => {
+       next(err);
+     });
+})
 
-router.get("/student/edit-profile", (req, res, next) => {
-  res.render("student/edit-profile")
+router.get('/user_dancestylesort', loginCheck(), (req, res, next) => {
+  console.log("home page logged");
+     Training.find()
+     .then(trainings => {
+       console.log(trainings);
+       dancestylesort(trainings);
+       res.render('indexLoggedin', {trainings});
+      })
+     .catch(err => {
+       next(err);
+     });
+})
+
+router.post('/user_filtered_hours', loginCheck(), (req, res, next) => {
+  let {hour, end_hour} = req.body;
+  Training.find()
+  .then(response => {
+    let trainings = inBetweenTimes(response, hour, end_hour);
+    res.render('indexLoggedin', {trainings});
+   })
   .catch(err => {
     next(err);
   });
-});
+  });
 
-router.get("/student/my-trainings", (req, res, next) => {
+//User profile interactions
+
+router.get("/edit-profile", (req, res, next) => {
+  let userinfo = req.session.user;
+  //console.log(dataFromUser)
+  User.findById(userinfo._id)
+       .then(dataFromUser => {
+         //console.log(userinfo)
+         res.render('student/edit-profile', {dataFromUser});
+        })
+       .catch(err => {
+         next(err);
+       });
+      });
+
+router.post("/edit-profile/", (req, res, next) => {
+  const {name, email, password} = req.body;
+  console.log("")
+  console.log("this is req.body")
+  console.log(req.body)
+  console.log(req.session.user._id, "SHOULD BE RIGHT!")
+  User.findByIdAndUpdate(req.session.user._id, {name, email, password})
+       .then(() => {
+         console.log("party", req.session.user)
+         res.redirect('logged');
+        })
+       .catch(err => {
+         next(err);
+       });
+      });   
+
+
+// router.get('/logged', (req, res, next) => {
+//   let dataFromUser = req.session.user
+//   Training.find()
+//      .then(trainings => {
+//        timesort(trainings)
+//        console.log(trainings)
+//        //timesort(trainings);
+//        res.render('indexLoggedin', {trainings, dataFromUser});
+//       })
+//      .catch(err => {
+//        next(err);
+//      });
+// })
+
+router.get("/my-trainings", (req, res, next) => {
+  console.log("my trainings")
   // console.log("user-id?", req.session.user);
   res.render("student/my-trainings")
   .catch(err => {

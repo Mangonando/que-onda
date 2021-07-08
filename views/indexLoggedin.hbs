@@ -1,20 +1,24 @@
+{{#with dataFromUser}}
 <h1>Our perfectly curated dance classes</h1>
 <div>
-  <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Sign Up </a>
-  <a href="/login/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"> Log In</a>
+  <h2>hello {{name}} </h2>
+
+{{/with}}
+  <button><a href="/my-trainings"> My classes </a></button>
+  <button><a href="/edit-profile"> My profile </a></button>
 </div>
 <div>
   <h2>Sort by:</h2>
   <u>
     <ul><a href="/">Time</a></ul>
-    <ul><a href="/sorted_name">Class title</a></ul>
-    <ul><a href="/sorted_school">School </a></ul>
-    <ul><a href="/sorted_style">Style </a></ul>
+    <ul><a href="/user_namesort">Class title</a></ul>
+    <ul><a href="/user_schoolsort">School </a></ul>
+    <ul><a href="/user_dancestylesort">Style </a></ul>
   </u>
 </div>
 <div>
   <h2>Filter by hours</h2>
-  <form action="/filtered_hours" method="POST"\>
+  <form action="/user_filtered_hours" method="POST"\>
   <label for="hour">From:</label> 
   <input id="hour" type="number" name="hour" value=19>
   
@@ -50,9 +54,8 @@
       //{{/each}} --}}
     </ul>
 
-    <a href="/signup/">Sign up to book your class ✅</a>
+    <a href="/book/signup/{{_id}}">Book your slot for class ✅</a>
+    <a href="/book/cancel/{{_id}}">Cancel your slot for class ❌</a>
   </div>
 </div>
 {{/each}}
-
-<a href="/schoolSignUp"> Sign up as a School</a>
