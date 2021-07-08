@@ -123,12 +123,12 @@ router.get("/student/my-trainings", (req, res, next) => {
 //     })
 // });
 
-router.get("/school", schoolIndex);
-router.get("/school/:id", schoolIndex);
+// router.get("/school", schoolIndex);
+// router.get("/school/:id", schoolIndex);
 //router.get("/school/:id/edit", schoolProfile){
  // res.render("signup")
 //});
-router.get("/school/:id/edit", schoolProfile);
+// router.get("/school/:id/edit", schoolProfile);
 
 
 
