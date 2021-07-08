@@ -3,14 +3,14 @@ function timesort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
-    if (a.time.hour[0] < b.time.hour[0]) return -1;
-    if (a.time.hour[0] > b.time.hour[0]) return 1;
+    if (a.time.hour < b.time.hour) return -1;
+    if (a.time.hour > b.time.hour) return 1;
 
     // else a.hour === b.hour, so compare minutes to break the tie
-    if (a.time.minute[0] < b.time.minute[0]) return -1;
-    if (a.time.minute[0] > b.time.minute[0]) return 1;
+    if (a.time.minute < b.time.minute) return -1;
+    if (a.time.minute > b.time.minute) return 1;
 
     // couldn't break the tie
     return 0;
@@ -21,7 +21,7 @@ function timesort(classes){
 
 function inBetweenTimes(classes, hour_a, hour_b){
     return classes.filter(aclass => {
-        return aclass.time.hour[0] >= hour_a && aclass.time.hour[0] <= hour_b});
+        return aclass.time.hour >= hour_a && aclass.time.hour <= hour_b});
     }
 
 
@@ -29,10 +29,10 @@ function namesort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
-    if (a.name[0] < b.name[0]) return -1;
-    if (a.name[0] > b.name[0]) return 1;
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
 
     // couldn't break the tie
     return 0;
@@ -44,10 +44,10 @@ function schoolsort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
-    if (a.school[0] < b.school[0]) return -1;
-    if (a.school[0] > b.school[0]) return 1;
+    if (a.school < b.school) return -1;
+    if (a.school > b.school) return 1;
 
     // couldn't break the tie
     return 0;
@@ -59,10 +59,10 @@ function dancestylesort(classes){
     classes.sort(function (a, b){
     // compare hours first
     //console.log("Hi!!!!")
-    //console.log(a.time.hour[0], "a . time [0]")
+    //console.log(a.time.hour, "a . time ")
 
-    if (a.danceStyle[0] < b.danceStyle[0]) return -1;
-    if (a.danceStyle[0] > b.danceStyle[0]) return 1;
+    if (a.danceStyle < b.danceStyle) return -1;
+    if (a.danceStyle > b.danceStyle) return 1;
 
     // couldn't break the tie
     return 0;
