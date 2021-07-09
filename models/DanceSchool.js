@@ -13,7 +13,7 @@ const danceSchoolSchema = new Schema({
   danceStyles: [String],
   classes: [{
     type: Schema.Types.ObjectId,
-    ref: classes_list
+    ref: "Training"
   }],
   image: String,
   id: String

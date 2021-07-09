@@ -15,19 +15,7 @@ const trainingSchema = new Schema({
     time: {
       hour: Number,
       minute: Number},
-    days: [{
-        day: String,
-        opt: Boolean,
-       },
-        {day: String,
-        opt: Boolean},
-        {day: String,
-        opt: Boolean},
-      {day: String,
-      opt: Boolean},
-      {day: String,
-      opt: Boolean}
-      ],
+    days: String,
     price: Number,
     id: String
   });

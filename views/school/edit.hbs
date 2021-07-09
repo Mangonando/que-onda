@@ -1,7 +1,7 @@
 <h2>Edit your Dancing School</h2>
+{{#with school}}
 {{#if school}}
-  {{#each school}}
-    <form action="/movies/{{school._id}}" method="POST">
+    <form action="/school/{{this._id}}/edit" method="POST">
       <div class="form-group">
         <label for="school">School Name</label>
         <input
@@ -33,71 +33,14 @@
         </select>
       </div>
 
-      <div class="form-group mt-3">
-        <label for="teacher">Teacher</label>
-        <input
-          class="form-control"
-          id="teacher"
-          type="text"
-          name="teacher"
-          value="{{this.teacher}}"
-        />
-      </div>
-
-      <div class="form-group mt-3">
-        <label for="days">Days</label>
-        <select
-          class="form-control"
-          id="days"
-          name="days"
-          value="{{this.days}}"
-        >
-          <option></option>
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-      </div>
-
-      <div class="form-group mt-3">
-        <label for="time">Time</label>
-
-        <select
-          class="form-control"
-          id="time"
-          name="time"
-          value="{{this.time}}"
-        >
-          <option></option>
-          <option>Morning</option>
-          <option>Afternoon</option>
-          <option>Evening</option>
-        </select>
-      </div>
-
-      <div class="form-group mt-3">
-        <label for="price">Price</label>
-        <input
-          class="form-control"
-          id="price"
-          type="number"
-          name="price"
-          value="{{this.price}}"
-        />
-      </div>
-
       <div class="mt-4">
         <button
-          class="btn btn-outline-info btn-lg btn-block col-12"
+          class="btn btn-outline-primary btn-lg btn-block col-12"
           type="submit"
         >Update Changes</button>
       </div>
     </form>
-  {{/each}}
 {{else}}
   <h3>No classes to edit</h3>
 {{/if}}
+{{/with}}
