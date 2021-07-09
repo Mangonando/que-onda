@@ -203,42 +203,21 @@ router.get("/add-class/:id", (req, res, next) => {
     {new: true}).then(user => {    
       console.log('user', user)
     res.redirect(`/my-trainings`);
-}).catch(err => {
-    console.log('Error while finding a project by ID during application: ', err);
-})  // classes.findByUserId(req.session.user._id)
-  // .then()
-  // //metodo agregar clase a usuario
-  // const {} = req.body;
-  // Training.find(req.session.user._id, {name, email, password})
-  //      .then(() => {
-  //        res.redirect('my-trainings');
-  //       })
-  //      .catch(err => {
-  //        next(err);
-       });
+      }).catch(err => {
+    })  
+  });
 
+  // router.post('/add-class/:id/delete', (req, res, next) => {
+  // //   User.findByIdAndUpdate(req.session.user._id,
+  
+  //       res.redirect('/my-trainings');
+  //     .catch(err => {
+  //       next(err);
+  //     }))
+  // });
+  
 
-
-// router.get('/:id/edit', (req, res, next) => {
-//   Movie.findById(req.params.id).populate('cast')
-//     .then(movie => {
-//       console.log(movie);
-//       Celebrity.find().then(celebrities => {
-//         // console.log(movie.cast);
-//         let options = '';
-//         let selected = '';
-//         celebrities.forEach(actor => {
-//           selected = movie.cast.map(el => el._id).includes(actor._id) ? ' selected' : '';
-//           options += `<option value="${actor._id}" ${selected}>${actor.name}</option>`;
-//         });
-//         console.log(options);
-//         // res.render('movies/edit', { movie, celebrities });
-//         res.render('movies/edit', { movie, options });
-//       })
-//     })
-//     .catch(err => {
-//       next(err);
-//     })
+// router.get(
 // });
 
 router.get("/school", schoolIndex);
