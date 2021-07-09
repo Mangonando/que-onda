@@ -44,25 +44,26 @@ router.get("/signup/school", (req, res, next) => {
 
 router.post('/signup/school', (req, res, next) => {
   // get username and password
-  const { username, password, email } = req.body;
-  console.log({ username, password });
+  const {password, email, school } = req.body;
+  console.log({ email, password, school });
   // is the password at least 8 chars
   if (password.length < 8) {
     // if not we show the signup form again with a message
     res.render('school/signup', { message: 'Your password has to be 8 chars min' });
     return
   }
-  if (username === '') {
-    res.render('school/signup', { message: 'Your username cannot be empty' });
+  if (email === '') {
+    res.render('school/signup', { message: 'Your email cannot be empty' });
     return
   }
   // validation passed - password is long enough and the username is not empty
   // check if the username already exists
-  DanceSchool.findOne({ username: username })
+  DanceSchool.findOne({ email: email })
     .then(userFromDB => {
       // if user exists -> we render signup again
+      console.log(userFromDB)
       if (userFromDB !== null) {
-        res.render('school/signup', { message: 'This username is already taken' });
+        res.render('school/signup', { message: 'This email is already taken' });
       } else {
         // the username is available
         // we create the hashed password
@@ -70,7 +71,7 @@ router.post('/signup/school', (req, res, next) => {
         const hash = bcrypt.hashSync(password, salt);
         console.log(hash);
         // create the user in the database
-        DanceSchool.create({ username: username, password: hash, email })
+        DanceSchool.create({ email: email, password: hash, school: school})
           .then(createdUser => {
             console.log(createdUser);
             // log the user in immediately
@@ -80,11 +81,11 @@ router.post('/signup/school', (req, res, next) => {
               if (err) {
                 next(err);
               } else {
-                res.redirect('/');
+                req.session.user = createdUser;
+                res.render('school/index', {school: createdUser} );
               }
             })
             // redirect to login
-            res.redirect('/login');
           })
       }
     })
@@ -92,6 +93,10 @@ router.post('/signup/school', (req, res, next) => {
 router.get("/login/school", (req, res, next) => {
   res.render("school/login");
 });
+
+// router.get("/schoolIndex", (req, res, next) => {
+//   res.render("school/index", {schools});
+// });
 
 // router.post("/login/school", passport.authenticate('local', {
 //   //successRedirect must take to /school/:id from MongoDB
@@ -148,6 +153,7 @@ router.post("/login", (req, res, next) => {
         return;
       }
     })
+  })
 
   router.get('/login', (req, res, next) => {
   res.render('login')
@@ -194,7 +200,7 @@ router.post('/signup/student', (req, res, next) => {
               if (err) {
                 next(err);
               } else {
-                res.redirect('logged');
+                res.redirect('/logged');
               }
             })
           })
@@ -229,28 +235,28 @@ router.get('/logged', (req, res, next) => {
      });
 })
 
-router.post('/login', (req, res, next) => {
+router.post('/loginSchool', (req, res, next) => {
   console.log(req.body, "party")
   const {email: email, password: password } = req.body
-  User.findOne({email})
+  DanceSchool.findOne({email})
     .then(dataFromUser => {
       if (password == null) {
-        res.render('login', { message: 'Wrong credential' })
+        res.render('school/login', { message: 'Wrong credential' })
         return;}
 
       if (email == null) {
         console.log(dataFromUser)
         console.log("failure in the email === null")
-        res.render('login', { message: 'Wrong credential' })
+        res.render('school/login', { message: 'Wrong credential' })
         return;
       }
       if (bcrypt.compareSync(password, dataFromUser.password)) {
         req.session.user = dataFromUser;
         console.log("email?", req.session.user)
-        res.redirect("logged");
+        res.redirect("/school/index");
       } else {
         console.log("failure to login")
-        res.render('login', {message: 'Wrong credentials'})
+        res.render('school/login', {message: 'Wrong credentials'})
         return;
       }
     })
