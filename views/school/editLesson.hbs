@@ -1,0 +1,105 @@
+{{!-- NOT USEFUL FOR NOW..... --}}
+
+<h2>Edit your Lesson</h2>
+{{#with school}}
+{{#if school}}
+    <form action="/school/{{this._id}}/edit" method="POST">
+      <div class="form-group">
+        <label for="school">School Name</label>
+        <input
+          class="form-control"
+          id="school"
+          type="text"
+          name="school"
+          value="{{this.school}}"
+        />
+      </div>
+
+      {{!-- <label for="image">Image</label> 
+  <input id="image" type="text" name="image" value="{{ school.image }}"> --}}
+
+      <div class="form-group mt-3">
+        <label for="danceSyle">Dance Style</label>
+        <select
+          class="form-control"
+          id="danceStyle"
+          name="danceStyle"
+          value="{{this.danceStyle}}"
+        >
+          <option></option>
+          <option>Bachata</option>
+          <option>Contemporary</option>
+          <option>Modern</option>
+          <option>Salsa</option>
+          <option>Swing</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="teacher">Teacher</label>
+        <input
+          class="form-control"
+          id="teacher"
+          type="text"
+          name="teacher"
+          value="{{this.teacher}}"
+        />
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="days">Days</label>
+        <select
+          class="form-control"
+          id="days"
+          name="days"
+          value="{{this.days}}"
+        >
+          <option></option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="time">Time</label>
+
+        <select
+          class="form-control"
+          id="time"
+          name="time"
+          value="{{this.time}}"
+        >
+          <option></option>
+          <option>Morning</option>
+          <option>Afternoon</option>
+          <option>Evening</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="price">Price</label>
+        <input
+          class="form-control"
+          id="price"
+          type="number"
+          name="price"
+          value="{{this.price}}"
+        />
+      </div>
+
+      <div class="mt-4">
+        <button
+          class="btn btn-outline-primary btn-lg btn-block col-12"
+          type="submit"
+        >Update Changes</button>
+      </div>
+    </form>
+{{else}}
+  <h3>No classes to edit</h3>
+{{/if}}
+{{/with}}

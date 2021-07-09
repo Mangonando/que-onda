@@ -220,12 +220,12 @@ router.get("/add-class/:id", (req, res, next) => {
 // router.get(
 // });
 
-router.get("/school", schoolIndex);
-router.get("/school/:id", schoolIndex);
+// router.get("/school", schoolIndex);
+// router.get("/school/:id", schoolIndex);
 //router.get("/school/:id/edit", schoolProfile){
  // res.render("signup")
 //});
-router.get("/school/:id/edit", schoolProfile);
+// router.get("/school/:id/edit", schoolProfile);
 
 
 

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require('passport');
 const User = require('../models/UserQonda');
 const bcrypt = require('bcrypt');
+const DanceSchool = require("../models/DanceSchool");
 const Training = require("../models/Training");
 const {timesort, namesort, schoolsort, dancestylesort, inBetweenTimes} = require("./functions");
 
@@ -25,8 +26,8 @@ router.get('/auth/google/callback',
     failureRedirect: '/login',
     failureFlash:true}));
 
-router.get("/signup", (req, res, next) => {
-  res.render("signup");
+router.get("/signup/student", (req, res, next) => {
+  res.render("student/signup");
 });
 
 // router.post('/login', passport.authenticate('local', {
@@ -35,21 +36,73 @@ router.get("/signup", (req, res, next) => {
 //   passReqToCallback: true,
 // }));
 
-router.get("/school/login", (req, res, next) => {
+// SCHOOL BETCHEEEEEES
+
+router.get("/signup/school", (req, res, next) => {
+  res.render("school/signup");
+});
+
+router.post('/signup/school', (req, res, next) => {
+  // get username and password
+  const { username, password, email } = req.body;
+  console.log({ username, password });
+  // is the password at least 8 chars
+  if (password.length < 8) {
+    // if not we show the signup form again with a message
+    res.render('school/signup', { message: 'Your password has to be 8 chars min' });
+    return
+  }
+  if (username === '') {
+    res.render('school/signup', { message: 'Your username cannot be empty' });
+    return
+  }
+  // validation passed - password is long enough and the username is not empty
+  // check if the username already exists
+  DanceSchool.findOne({ username: username })
+    .then(userFromDB => {
+      // if user exists -> we render signup again
+      if (userFromDB !== null) {
+        res.render('school/signup', { message: 'This username is already taken' });
+      } else {
+        // the username is available
+        // we create the hashed password
+        const salt = bcrypt.genSaltSync();
+        const hash = bcrypt.hashSync(password, salt);
+        console.log(hash);
+        // create the user in the database
+        DanceSchool.create({ username: username, password: hash, email })
+          .then(createdUser => {
+            console.log(createdUser);
+            // log the user in immediately
+            // req.session.user = createdUser; -> this is the 'node-basic'auth-way'
+            // this is the passport login
+            req.login(createdUser, err => {
+              if (err) {
+                next(err);
+              } else {
+                res.redirect('/');
+              }
+            })
+            // redirect to login
+            res.redirect('/login');
+          })
+      }
+    })
+});
+router.get("/login/school", (req, res, next) => {
   res.render("school/login");
 });
 
-router.post('/school/login', passport.authenticate('local', {
-  //successRedirect must take to /school/:id from MongoDB
-  successRedirect: '/school/',
-  failureRedirect: '/school/login',
-  passReqToCallback: true,
-}));
+// router.post("/login/school", passport.authenticate('local', {
+//   //successRedirect must take to /school/:id from MongoDB
+//   successRedirect: '/school/',
+//   failureRedirect: '/school/login',
+//   passReqToCallback: true,
+// }));
 
-
-// if you need more control and also want to set an error message
-// router.post('/login', (req, res, next) => {
+// router.post("/login/school", (req, res, next) => {
 //   passport.authenticate('local', (err, theUser, failureDetails) => {
+//     console.log("DA USAAAA", theUser)
 //     if (err) {
 //       // Something went wrong authenticating user
 //       return next(err);
@@ -66,27 +119,52 @@ router.post('/school/login', passport.authenticate('local', {
 //         return next(err);
 //       }
 //       // All good, we are now logged in and `req.user` is now set
-//       res.redirect('/');
+//       res.redirect(`/school/${theUser.id}`);
 //     });
 //   })(req, res, next);
 // });
 
-router.get('/login', (req, res, next) => {
+router.post("/login", (req, res, next) => {
+  console.log(req.body, "party")
+  const {email: email, password: password } = req.body
+  User.findOne({email})
+    .then(dataFromUser => {
+      if (password == null) {
+        res.render("login", { message: "Wrong credential" })
+        return;}
+      if (email == null) {
+        console.log(dataFromUser)
+        console.log("failure in the email === null")
+        res.render("login", { message: "Wrong credential" })
+        return;
+      }
+      if (bcrypt.compareSync(password, dataFromUser.password)) {
+        req.session.user = dataFromUser;
+        console.log("email", req.session.user)
+        res.redirect("logged");
+      } else {
+        console.log("failure to login")
+        res.render("login", {message: "Wrong credentials"})
+        return;
+      }
+    })
+
+  router.get('/login', (req, res, next) => {
   res.render('login')
 })
 
 // this is the route where the signup form get's posted to
-router.post('/signup', (req, res, next) => {
+router.post('/signup/student', (req, res, next) => {
   // get username and password
   const { name, password, email } = req.body;
   console.log({ name, password, email });
   // is the password at least 8 chars
   if (password.length < 8) {
     // if not we show the signup form again with a message
-    res.render('signup', { message: 'Your password has to be 8 chars min' });
+    res.render('student/signup', { message: 'Your password has to be 8 chars min' });
     return
   }
-  if (email === '') {
+    if (email === '') {
     res.render('signup', { message: 'Your email cannot be empty' });
     return
   }
