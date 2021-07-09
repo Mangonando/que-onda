@@ -46,14 +46,18 @@ const classes = [
     level: 1,
     // schoolId: "the-house-of-bachata",
     danceStyle: "Bachata",
+    school: "The House of Bachata",
     teacher: "Romeo Santos",
     price: 10,
     time: {
-      hour: 10,
-      minute: 12,
-    },
+        hour: 10,
+        minute: 12,
+      },
     days: [
-      { day: "Monday", opt: true },
+      {
+        day: "Monday",
+        opt: true,
+      },
       { day: "Tuesday", opt: true },
       { day: "Wednesday", opt: true },
       { day: "Thursday", opt: false },
@@ -67,12 +71,13 @@ const classes = [
     // school: "The International House of Salsa (IHOS)",
     danceStyle: "Salsa",
     teacher: "Celia Cruz",
-    price: 10,
-    time: {
-      hour: 10,
-      minute: 00,
-    },
-
+    school: "House of Salsa",
+    time: 
+      {
+        hour: 10,
+        minute: 00,
+      },
+    
     days: [
       { day: "Monday", opt: true },
       { day: "Tuesday", opt: true },
@@ -87,6 +92,7 @@ const classes = [
     level: 3,
     // school: "Swing -n- Out",
     danceStyle: "Swing",
+    school: "House of Swing",
     teacher: "Ella Fitzgerald",
     price: 15,
     time: {
@@ -108,6 +114,7 @@ const classes = [
     level: 4,
     // school: "Contemporary Queens",
     danceStyle: "Contemporary",
+    school: "House of Contemporary",
     teacher: "Martha Graham",
     price: 10,
     time: {
@@ -130,13 +137,17 @@ const classes = [
     // school: "Modern Magic",
     danceStyle: "Modern",
     teacher: "Alan Sanchez",
-    price: 12,
-    time: {
-      hour: 8,
-      minute: 20,
-    },
+    school: "House of Modern",
+    time:
+      {
+        hour: 8,
+        minute: 20,
+      },
     days: [
-      { day: "Monday", opt: true },
+      {
+        day: "Monday",
+        opt: true,
+      },
       { day: "Tuesday", opt: true },
       { day: "Wednesday", opt: true },
       { day: "Thursday", opt: false },
