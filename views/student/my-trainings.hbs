@@ -1,46 +1,30 @@
+<h2 class="title">My reserved lessons</h2>
 
-{{!-- //array that user hs signed up for -- 
-// within user view there should be the classes they've signed up for  --}}
+{{#with userdetails}}
 
-{{!-- {{#each bookedTraining}}
-    <h2>{{this.name}}</h2>
-    <a href="/celebrities/{{ this._id }}">See Details</a>
-    <form action="/celebrities/{{ this._id }}/delete" method="POST">
-    <button type="submit">Delete</button>
-    </form>
-    <a href="/celebrities/{{ this._id }}/edit">Edit</a>
+{{#each classes}}
+
+<h3>{{name}}</h3>
+
+<ul>
+  <li>Level: {{level}}</li>
+  <li>Dance style: {{danceStyle}}</li>
+  <li>Studio: {{school}}</li>
+  <li>Price: {{price}}</li>
+  <li>Time: {{Time}}</li>
+  <li>Day: 
+    {{#each days}}
+      {{day}} {{opt}}
+    {{/each}}
+  </li>
+</ul>
+<button type="button" class="btn btn-info">Delete your lesson</button>
+
 {{/each}}
 
-<a href="/celebrities/new">Add new celebrity</a> --}}
+{{/with}}
 
-<h2>My student profile</h2>
-
-<div class="card">
-  <h5 class="card-header">Booked Classes</h5>
-  <div class="card-body">
-    <h5 class="card-title">Class Name</h5>
-    <p class="card-text">Class name, level, danceStyle, teacher, time, day, price.</p>
-    <a href="#" class="btn btn-primary">Delete your booking</a>
-  </div>
-</div>
-
-{{!-- <div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Booked Classes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Cancelled Classes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Saved Classes</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> --}}
+<style>
+  .title { background-color:salmon; position: absolute; left: 0; width: 100%;
+  padding: 0px; padding-left: 0%; } .content { margin-top: 90%px; }
+</style>

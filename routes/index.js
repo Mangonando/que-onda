@@ -172,10 +172,6 @@ router.get("/edit-profile", (req, res, next) => {
 
 router.post("/edit-profile/", (req, res, next) => {
   const {name, email, password} = req.body;
-  console.log("")
-  console.log("this is req.body")
-  console.log(req.body)
-  console.log(req.session.user._id, "SHOULD BE RIGHT!")
   User.findByIdAndUpdate(req.session.user._id, {name, email, password})
        .then(() => {
          console.log("party", req.session.user)
@@ -186,53 +182,42 @@ router.post("/edit-profile/", (req, res, next) => {
        });
       });   
 
-
-// router.get('/logged', (req, res, next) => {
-//   let dataFromUser = req.session.user
-//   Training.find()
-//      .then(trainings => {
-//        timesort(trainings)
-//        console.log(trainings)
-//        //timesort(trainings);
-//        res.render('indexLoggedin', {trainings, dataFromUser});
-//       })
-//      .catch(err => {
-//        next(err);
-//      });
-// })
+     
 
 router.get("/my-trainings", (req, res, next) => {
   console.log("my trainings")
-  // console.log("user-id?", req.session.user);
-  res.render("student/my-trainings")
-  .catch(err => {
-    next(err);
+  User.findById(req.session.user._id).populate('classes')
+  .then(user => {    
+      console.log('user', user)
+      res.render("student/my-trainings", {userdetails: user}) 
+}).catch(err => {
+    console.log('Error while finding a project by ID during application: ', err);
   });
 });
 
+router.get("/add-class/:id", (req, res, next) => {
+  User.findByIdAndUpdate(req.session.user._id, 
+    {
+        "$push": { "classes": req.params.id },
+    }, 
+    {new: true}).then(user => {    
+      console.log('user', user)
+    res.redirect(`/my-trainings`);
+      }).catch(err => {
+    })  
+  });
 
+  // router.post('/add-class/:id/delete', (req, res, next) => {
+  // //   User.findByIdAndUpdate(req.session.user._id,
+  
+  //       res.redirect('/my-trainings');
+  //     .catch(err => {
+  //       next(err);
+  //     }))
+  // });
+  
 
-
-// router.get('/:id/edit', (req, res, next) => {
-//   Movie.findById(req.params.id).populate('cast')
-//     .then(movie => {
-//       console.log(movie);
-//       Celebrity.find().then(celebrities => {
-//         // console.log(movie.cast);
-//         let options = '';
-//         let selected = '';
-//         celebrities.forEach(actor => {
-//           selected = movie.cast.map(el => el._id).includes(actor._id) ? ' selected' : '';
-//           options += `<option value="${actor._id}" ${selected}>${actor.name}</option>`;
-//         });
-//         console.log(options);
-//         // res.render('movies/edit', { movie, celebrities });
-//         res.render('movies/edit', { movie, options });
-//       })
-//     })
-//     .catch(err => {
-//       next(err);
-//     })
+// router.get(
 // });
 
 // router.get("/school", schoolIndex);
