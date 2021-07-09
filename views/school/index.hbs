@@ -1,12 +1,11 @@
 {{#with school}}
-{{#if school}}
   <h1 class="title">{{this.school}}</h1>
   <div class="content row">
     <div class="col-2">
       <img width="100%" src="{{this.image}}" alt="{{this.school}}" />
     </div>
     <div class="col-8">
-      <h4 class="mb-5">Dance Style: {{this.danceStyles}}</h4>
+      <h4 class="mb-5">Dance Style: {{this.danceStyle}}</h4>
       <a href="/school/{{this._id}}/edit" class="btn btn-outline-primary">Edit
         your wonderful profile</a>
       <a href="/school/new" class="btn btn-outline-success">Create a new dance lesson</a>
@@ -32,9 +31,7 @@
       {{/each}}
     </div>
   </div>
-{{else}}
-  <h3>There are no trainings listed</h3>
-{{/if}}
+  {{!-- <h3>There are no trainings listed</h3> --}}
 {{/with}}
 
 

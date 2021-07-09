@@ -2,7 +2,7 @@ const DanceSchool = require("../models/DanceSchool");
 const Training = require("../models/Training");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const danceSchools = require("../seeds");
+//const danceSchools = require("../seeds");
 
 router.get("/school/new", (req, res, next) => {
   res.render("school/new");
@@ -45,11 +45,13 @@ router.get("/school/:id/edit", (req, res, next) => {
 });
 
 router.post("/school/:id/edit", (req, res, next) => {
-  const { username, password, school, danceStyles } = req.body;
-  DanceSchool.findByIdAndUpdate(req.params.id, { username, password, school, danceStyles })
+  const { username, password, school, danceStyle } = req.body;
+  console.log(req.body, "wey perrea")
+  DanceSchool.findByIdAndUpdate(req.params.id, { username, password, school, danceStyle }, {new: true})
     .then((dataFromSchool) => {
+      console.log(dataFromSchool)
       console.log("WEY", req.params.id);
-      res.redirect("/school/:id", {id: req.params.id});
+      res.render("school/index", {school: dataFromSchool});
     })
     .catch((err) => {
       next(err);
@@ -62,11 +64,18 @@ router.post("/school/new", (req, res, next) => {
   console.log("REQ AND BODY", req.body);
   const time = { hour: hour, minute: minute };
   Training.create({ name, level, danceStyle, teacher, price, time, days })
-    .then(() => {
+    .then((new_class) => {
       console.log("SESSION", req.session);
-      // const schoolId = req.session.user.id
-      // res.redirect(`/school/${schoolId}`)
-      res.redirect("/school/new");
+      const schoolId = req.session.user._id
+      DanceSchool.findByIdAndUpdate(schoolId, {
+        "$push": { "classes": new_class._id}}, {new: true})
+      .then((dataFromSchool) => {
+        console.log(dataFromSchool)
+        DanceSchool.findById(dataFromSchool._id).populate("classes")
+        .then((final_new_class)=>{
+          res.render("school/index", {school: final_new_class});
+        })
+      })
     })
     .catch((err) => {
       console.log(err);

@@ -7,10 +7,10 @@ const classes_list = require("./Training");
 //we gotta implement javascript in hbs handler
 
 const danceSchoolSchema = new Schema({
-  username: String,
+  email: String,
   password: String,
   school: String,
-  danceStyles: [String],
+  danceStyle: String,
   classes: [{
     type: Schema.Types.ObjectId,
     ref: "Training"
